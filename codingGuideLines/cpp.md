@@ -174,7 +174,7 @@ namespace alice
 #   endif
 #endif
 ```
-  - `#ifdef` **should not** be used to check own definitions ( use `#if MYDEFINEDPARAM == 1` instead )
+  - `#ifdef` **should not** be used to check own definitions ( use `#if( MYDEFINEDPARAM == 1 )` instead )
   - avoid preprocessor macros and use C++11 features if possible
   - comment preprocessor macros
 ```
@@ -468,11 +468,10 @@ class Bob;
 template<
     std::size_t T_fooSize
 >
-using BobWithoutBool =
-    Bob<
-        fooSize,
-        true
-    >;
+using BobWithoutBool = Bob<
+    fooSize,
+    true
+>;
 ```
   - each template argument is on a separate line
   - the *oc-token* `>` is on the same indentation level as the opening line
