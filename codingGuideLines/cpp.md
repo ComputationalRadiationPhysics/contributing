@@ -17,58 +17,58 @@
       - the corresponding license header, author(s) + current year ( if changed - and a commit of a file means a change )
       - you **never remove** an author or a year, you *only add to them*
     - a `#pragma once` as guard to prevent double includes ( do **not** use `#ifdef` guards )
-  - includes should be ordered from the most specific/specialize to the most generic one
-  - comments which objects from a include would be used
-    - **should avoided** if the include points to projects without a stable interface ( such as our ComputationalRadiationPhysics projects)
-    - can used for include from the `C++ STL`, `Boost`, ...
+  - includes:
+    - order from the most specific/specialized to the most general one
+    - objects used from an include **can** be added in a comment but should **at most** be used for stable third party includes (can be used for includes from `C++ STL`, `Boost`, ...)
 ```C++
 #include "myproject/myTypes.hpp"
 #include "myproject/unStableApiTraits.hpp" // is_const<>, is_trait<> -> this should be avoided
 #include <boost/mpl/vector.hpp> 
 #include <boost/type_traits.hpp> // is_void<>, is_union<>
 ```
-   
+
 
 ## 2. Project
   - each project must have a global namespace which covers all the code but **not** includes
   - the namespace structure 
     - is equal to the folder structure
-    - a file can have additional namespaces which are not represented by folders
-  - the `include` folder contains as first folder the project name e.g., `include/picongpu`, `include/haseongpu`
-  - folder names must be written in camel case and begins with lower case letter
-  - the project name **must** begin with and **can** fully composed of lower case letter
+    - a file can have *additional* namespaces which are not represented by folders
+  - the `include` folder contains as a first folder the project name e.g., `include/picongpu`, `include/haseongpu`
+  - folder names must be written in camel case and begin with a lower case letter
+  - the project name **must** begin with but **can** be fully composed of lower case letters (for folders and namespaces);
+    since this is a simplifcation for coding, the official spelling might differ
 
 
 ## 3. Global Rules
   - wrap a line after column 80
   - **no TABS**, use four (**4**) spaces per indentation level
   - no code alignment (only indention)
-  - names are always written in camel case syntax e.g., `ThisIsCamelCase`, `thisIsAlsoCamelCase` ( expect: macros and defines )
+  - names are always written in camel case syntax e.g., `ThisIsCamelCase`, `thisIsAlsoCamelCase` ( except: macros and defines )
   - if there is no content between `{ }`, `< >`, `[ ]` or `( )` 
-    - the *oc-token* token **must** be on the some line
+    - the *oc-token* token **must** be on the same line
     - one space between both *oc-tokens* ( regex: `<[:space:]>` )
   - *oc-token* `{ }`
     - `{` is always placed on a new line ( same indentation level than the line before ) and followed by a new line
     - `}` is always placed on the same indention level than the opening token
   - *oc-token* `( )`
-    - for function/ method signatures
+    - for function / method signatures
       - `(` is placed after a *prefix tag* without a space before e.g., `method( );`
-      - `(` must followed by a new line ( expect: if `( )` empty )
-      - `)` is always placed on the same indention level than the opening token ( expect: if `( )` is empty )
+      - `(` must followed by a new line ( except: if `( )` empty )
+      - `)` is always placed on the same indention level than the opening token ( except: if `( )` is empty )
     - for expressions e.g., `( a + 1 ) * 5;`
       - can placed on one line
       - after 80 characters a new line **must** follow
-      - first new line is indented see section [Operators](cpp.md#8-Operators)
-    - for function calls e.g., ` foo( this );`
+      - after first new line start indention, see section [Operators](cpp.md#8-Operators)
+    - for function calls e.g., `foo( this );`
       - for one function parameter use one line
       - for more than one function parameter place each indented on a new line see section [Function Calls](cpp.md#9-Function Calls)
-  - usage of end of line spaces are **not** allowed
+  - usage of end of line spaces is **not** allowed
   - it is not allowed to place a space before `;`
-  - semicolon `;` always followed by a new line
+  - semicolon `;` is always followed by a new line
 
 
 ## 4. Comments
-  - multi line comments 
+  - multi line comments
     - begin with `/*` ( or `/**` for doxygen) followed by a space ( regex: `/*[:space:]` )
     - end with `*/` on a **new line**
     - each line between begin and end starts with ` *` ( regex: `[:indentation:][:space:]*{[:space:]comment}` )
@@ -82,7 +82,7 @@
  *#################################################
  */
 ```
-  - doxygen inside comments is lightly encouraged see section [doxygen](cpp.md#5-Doxygen-Comments)
+  - doxygen inside comments is highly encouraged see section [doxygen](cpp.md#5-Doxygen-Comments)
 ```C++
 /* this is a multi line comment
  * where the end tag is on a new line
@@ -91,7 +91,7 @@
 // this is a single line comment
 ```
 
-  
+
 ## 5. Doxygen Comments
    - multi line comments **must** be used for doxygen comments
    - brief 
@@ -99,13 +99,13 @@
      - should be a single line comment
    - long description 
      - is separated with a empty line
-     - is not aligned with the brief 
+     - is not aligned with the brief line
    - use `@` for doxygen commands e.g., `@param`, `@return`, `@{`
-   - commands which should only rarely e.g., for files/ code parts that are not developed by your own
+   - commands which should only rarely be used e.g., for code parts that are included from (license compatible!) third party projects (use the copyright header for full files or files that mainly consist of the external code)
      - `@author`
      - `@date`
      - `@copyright`
-   - use `@f[`/ `@f]` or other formula commands to describe equations in latex
+   - use `@f[` / `@f]` or other formula commands to describe equations in latex
 ```C++
 /** this is allowed
  *
@@ -141,7 +141,7 @@ functionName(
   - namespaces begin with a **lower case letter**
   - it is not allowed to indent nested namespaces
   - each namespace is defined on a separate line
-  - the closing parenthesis `}` of a namespace **must** placed together with a namespace name as comment on a new line
+  - the closing parenthesis `}` of a namespace **must** be placed on a new line together with a namespace name as comment
   ( regex: `}[::space://[:space:]namespace namespaceName`)`
   - code inside the deepest namespace is indented
 ```C++
@@ -173,7 +173,7 @@ namespace alice
 #   endif
 #endif
 ```
-  - `#ifdef` **should not** used to check own definitions ( use `#if MYDEFINEDPARAM == 1` instead )
+  - `#ifdef` **should not** be used to check own definitions ( use `#if MYDEFINEDPARAM == 1` instead )
   - avoid preprocessor macros and use C++11 features if possible
   - comment preprocessor macros 
 ```
@@ -190,14 +190,14 @@ namespace alice
 
 
 ## 8. Operators
-  - unary operator's are placed directly before or behind the corresponding object e.g., `i++`, `++i`
-  - binary operator's
+  - unary operators are placed directly before or behind the corresponding object e.g., `i++`, `++i`
+  - binary operators
     - are surrounded by spaces e.g., `x = a + b;`
-    - comma `,` ( expect: in function signatures ) is **always** followed by a new line with same indent
-  - operator's **expect** the comma operator **can** be placed on one line 
+    - comma `,` ( d: in function signatures ) is **always** followed by a new line with same indent
+  - operators **except** the comma operator do **not** require to be followed by a newline
   - after 80 characters a new line must follow
-      - if a line must turn over the binary operator is the last code of the previous line
-      - the first new line is indented
+      - use the binary operator as the last code of the previous line
+      - the first new line starts a new indentation block
 ```C++
 void
 method(
@@ -215,14 +215,14 @@ method(
     );
 }
 ```
-  - alternative token for operator `&&` ( and ), `|` ( bitor ), ... are not allowed
+  - alternative tokens for operators `&&` ( and ), `|` ( bitor ), ... are not allowed
 
 
 ## 9. Function Calls
-  - for one function parameter 
+  - for **one** function parameter 
     - use one line e.g., `method( 2 );`
     - parameter is surrounded by spaces ( regex: `functionName([:space:]param[:space:])` )
-  - for more than one function parameter place each indented on a new line
+  - for **more than one** function parameter place each indented on a new line
   - `( ... )` are part of the *caller* (see above), no space to that caller
   - `if`, `while` and `switch` follows the same rules
 ```C++
@@ -239,7 +239,7 @@ foo( )
 
 
 ## 10. Type Definitions
-  - the type qualifier `const` is placed right hand of the type which should be const
+  - the type qualifier `const` is placed right hand of the type that shall be const
   - `&` (reference) and `*` (pointer) **must** be surrounded by **one** space 
 ```C++
 int const * byte;  // pointer to const int value
@@ -254,9 +254,9 @@ int* byte; // NOT ALLOWED by the coding guide lines (missing spaces around `*`)
   - if possible do not use the assignment operator
 ```C++
 float foo = 1; // should be avoided
-float foo( 1 ); // should be preferred but sometime trigger compile errors
+float foo( 1 ); // should be preferred, if possible
 ```
-  - use initialization lists in C++11
+  - use of initialization lists in C++11
 ```C++
 float fooo{ 1 }
 float * ptr = new T_Type{ 1, 2 };
@@ -264,9 +264,9 @@ float * ptr = new T_Type{ 1, 2 };
 
 
 ## 12. Function and Method Definitions
-  - functions and methods are named camel case with beginning lower case letter
+  - functions and methods are named camel case with a beginning lower case letter
   - the function/method prefix **must** be placed on a separate line e.g., `inline`, `static` , `__device__`
-  - the result type 
+  - the result type
     - **must** be placed on a separate line (sometimes the result is very long)
     - in C++11 result is always `auto` and [trailing return type definition](http://en.cppreference.com/w/cpp/language/function) is used 
     - trailing return type definition is on a new line
@@ -275,12 +275,12 @@ auto
 size() const 
 -> std::size_t;
 ```
-  - function/ method name must placed on a new line followed by the *oc-token* `(`
-  - *oc-token* `(` must followed by a new line
+  - function / method name must placed on a new line followed by the *oc-token* `(`
+  - *oc-token* `(` must be followed by a new line
   - *oc-token* `)` is on a new line with the same indention level than `(`
   - method type qualifier are placed after `)`
   - code between `{` and `}` is indented
-  - the function/ method body `{ }` is followed by an empty line
+  - the function / method body `{ }` is followed by an empty line
 ```C++
 __device__ static
 const int
@@ -314,7 +314,7 @@ if( a == b )
 ```c++
 if( a == b )
 {
-     // do something
+    // do something
 }
 else if( b == 1 )
     function( );
@@ -323,8 +323,8 @@ else
     foo( );
 }
 ```
-  
-  
+
+
 ## 14. Switch Case
   - `case` is indented
   - new line after `:`
@@ -347,15 +347,20 @@ switch( value )
 
 
 ## 15. Loops
-  - for loop param parts placed on separate lines
+  - complex parameter **can** be placed on separate lines
 ```C++
+for( int i = 0; i <= i + 1; ++i )
+{
+    // this is a simple loop
+}
+
 for(
-    int i = 0;
-    i <= i+1;
-    ++i
+    std::vector<bool>::iterator it = v.begin();
+    it != v.end();
+    ++it
 )
 {
-    // this is a endless loop 
+    // this is a loop with long type names in it's parameters
 }
 ```
   - while loop
@@ -384,21 +389,19 @@ while( i != endOfLoop );
 
 
 ## 16. Classes, Structs and Type Definitions
-  - use camel case names that start with **upper case letter** e.g., `ClassBob`, `TypeNameBob`
+  - use camel case names that start with an **upper case letter** e.g., `ClassBob`, `TypeNameBob`
   - semicolon `;` **must** be placed after the closing parenthesis `}`
   - code between `{` and `};`
     - visibility definitions like `public:`, `private:` and `protected:` are not indented
     - all other code is indented
-  - fixed prefix for each class is not allowed e.g., `QApplication`, `QWidget`
-  -  inheritance 
+  - fixed prefix for each class is not allowed e.g., `QApplication`, `QWidget` (use namespaces)
+  - inheritance
     - `final` specifier is placed inline with the class/struct name and surrounded by spaces
     - `:` is placed after the class name (regex: `ClassName[:space:]:`)
-    - parent classes are indented are placed on a new line
+    - parent classes are indented and placed on a new line
     - each parent class is placed on a separate line
     - visibility definitions like `public`, `private` and `protected` must placed inline with the parent class
-    - typedef/ using
-      - in C++11 `using` instead of `typedef` **should** be used
-      - for typedef the definition is indented on a new line
+  - in C++11 `using` shall be preferred over `typedef`
 ```C++
 struct BobClass final :
     public BaseClass1,
@@ -410,17 +413,10 @@ struct BobClass final :
     
 private:
     // C++11
-    using OneOfMyBaseClasses = 
-        BaseClass1;
+    using OneOfMyBaseClasses = BaseClass1;
     // C++98
-    typedef 
-        BaseClass2 TheOtherBaseClass;
+    typedef BaseClass2 TheOtherBaseClass;
 };
-```
-  - for `using` new line after assign `=` mandatory ( definition is indented )
-```C++
-using NewClassName = 
-    BobClass;
 ```
   - constructor
       - `:` is placed after the constructor name and followed by a new line
@@ -441,7 +437,7 @@ struct BobClass
 ```
 
 
-## 17. Template Class/ Struct and Type Definitions
+## 17. Template Class / Struct and Type Definitions
   - for types ( class, struct and native C types ) template arguments shall be prefixed with T_ followed by an **upper case letter** camel case
 ```C++
 template<
@@ -537,17 +533,14 @@ foo( )
     >( );
     
     // C++11
-    using type =
-        FooClass< int >;
-    using type2 =
-        FooClass< 
-            int,
-            float
-        >;
+    using type = FooClass< int >;
+    using type2 = FooClass<
+        int,
+        float
+    >;
         
     // C++98    
-    typedef 
-        FooClass< int > type3;
+    typedef FooClass< int > type3;
 }
 ```
 
@@ -564,8 +557,7 @@ template<
 struct IntegralConstant
 {
     static constexpr T_EmbeddedType value = T_embeddedValue;
-    using value_type =
-        T_EmbeddedType;
+    using value_type = T_EmbeddedType;
 };
 
 namespace traits
@@ -575,8 +567,7 @@ namespace traits
     >
     struct GetValueType
     {
-        using type =
-           typename T_Type::value_type; 
+        using type = typename T_Type::value_type; 
     };
 } // namespace traits
 ```
@@ -588,6 +579,5 @@ namespace traits
 template<
     typename T_Type
 >
-using GetValueType_t =
-    typename traits::GetValueType< T_Type >::type;
+using GetValueType_t = typename traits::GetValueType< T_Type >::type;
 ```
