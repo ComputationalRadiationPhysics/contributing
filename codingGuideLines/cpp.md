@@ -23,14 +23,14 @@
 ```C++
 #include "myproject/myTypes.hpp"
 #include "myproject/unStableApiTraits.hpp" // is_const<>, is_trait<> -> this should be avoided
-#include <boost/mpl/vector.hpp> 
+#include <boost/mpl/vector.hpp>
 #include <boost/type_traits.hpp> // is_void<>, is_union<>
 ```
 
 
 ## 2. Project
   - each project must have a global namespace which covers all the code but **not** includes
-  - the namespace structure 
+  - the namespace structure
     - is equal to the folder structure
     - a file can have *additional* namespaces which are not represented by folders
   - the `include` folder contains as a first folder the project name e.g., `include/picongpu`, `include/haseongpu`
@@ -44,7 +44,7 @@
   - **no TABS**, use four (**4**) spaces per indentation level
   - no code alignment (only indention)
   - names are always written in camel case syntax e.g., `ThisIsCamelCase`, `thisIsAlsoCamelCase` ( except: macros and defines )
-  - if there is no content between `{ }`, `< >`, `[ ]` or `( )` 
+  - if there is no content between `{ }`, `< >`, `[ ]` or `( )`
     - the *oc-token* token **must** be on the same line
     - one space between both *oc-tokens* ( regex: `<[:space:]>` )
   - *oc-token* `{ }`
@@ -78,7 +78,7 @@
 /*#################################################
  *#   @brief block formating this is not allowed  #
  *#                                               #
- *#   text text                                   #    
+ *#   text text                                   #
  *#################################################
  */
 ```
@@ -94,10 +94,10 @@
 
 ## 5. Doxygen Comments
    - multi line comments **must** be used for doxygen comments
-   - brief 
-     - begins with `/**`  
+   - brief
+     - begins with `/**`
      - should be a single line comment
-   - long description 
+   - long description
      - is separated with a empty line
      - is not aligned with the brief line
    - use `@` for doxygen commands e.g., `@param`, `@return`, `@{`
@@ -128,10 +128,11 @@ template<
 >
 HDINLINE static
 int
-functionName( 
+functionName(
     T_Foo a,
-    double b )
-{ 
+    double b
+)
+{
     return 0;
 }
 ```
@@ -167,15 +168,15 @@ namespace alice
   - indent nested preprocessor commands
   - macros with newlines: align `\` symbol to column 80
 ```c++
-#if(VARIABLE_BOB==1)
-#   if(VARIABLE_ALICE==1)
+#if( VARIABLE_BOB == 1 )
+#   if( VARIABLE_ALICE == 1 )
 #       define HPC +1
 #   endif
 #endif
 ```
   - `#ifdef` **should not** be used to check own definitions ( use `#if MYDEFINEDPARAM == 1` instead )
   - avoid preprocessor macros and use C++11 features if possible
-  - comment preprocessor macros 
+  - comment preprocessor macros
 ```
 #define MY_MACRO( )                                                           \
     template<                                                                 \
@@ -207,7 +208,7 @@ method(
 {
     int bob( 10 );
     int alice( 10 * bob );
-    bob = bob * alice + 12 * bob * bob * bob * bob++ * --alice + 
+    bob = bob * alice + 12 * bob * bob * bob * bob++ * --alice +
         bob -
         alice;
     alice = charge * charge / (
@@ -219,14 +220,14 @@ method(
 
 
 ## 9. Function Calls
-  - for **one** function parameter 
+  - for **one** function parameter
     - use one line e.g., `method( 2 );`
     - parameter is surrounded by spaces ( regex: `functionName([:space:]param[:space:])` )
   - for **more than one** function parameter place each indented on a new line
   - `( ... )` are part of the *caller* (see above), no space to that caller
   - `if`, `while` and `switch` follows the same rules
 ```C++
-void 
+void
 foo( )
 {
     method( globalBob );
@@ -240,7 +241,7 @@ foo( )
 
 ## 10. Type Definitions
   - the type qualifier `const` is placed right hand of the type that shall be const
-  - `&` (reference) and `*` (pointer) **must** be surrounded by **one** space 
+  - `&` (reference) and `*` (pointer) **must** be surrounded by **one** space
 ```C++
 int const * byte;  // pointer to const int value
 int const * const byte; // const pointer to const int value
@@ -258,8 +259,15 @@ float foo( 1 ); // should be preferred, if possible
 ```
   - use of initialization lists in C++11
 ```C++
-float fooo{ 1 }
-float * ptr = new T_Type{ 1, 2 };
+void
+foo( )
+{
+    float fooo{ 1 };
+    float * ptr = new T_Type{
+        1,
+        2
+    };
+}
 ```
 
 
@@ -268,11 +276,11 @@ float * ptr = new T_Type{ 1, 2 };
   - the function/method prefix **must** be placed on a separate line e.g., `inline`, `static` , `__device__`
   - the result type
     - **must** be placed on a separate line (sometimes the result is very long)
-    - in C++11 result is always `auto` and [trailing return type definition](http://en.cppreference.com/w/cpp/language/function) is used 
+    - in C++11 result is always `auto` and [trailing return type definition](http://en.cppreference.com/w/cpp/language/function) is used
     - trailing return type definition is on a new line
 ```C++
-auto 
-size() const 
+auto
+size( ) const
 -> std::size_t;
 ```
   - function / method name must placed on a new line followed by the *oc-token* `(`
@@ -408,8 +416,7 @@ struct BobClass final :
     private BaseClase2
 {
     BobClass( )
-    {
-    }
+    { }
     
 private:
     // C++11
@@ -441,7 +448,7 @@ struct BobClass
   - for types ( class, struct and native C types ) template arguments shall be prefixed with T_ followed by an **upper case letter** camel case
 ```C++
 template<
-    typename T_Foo, 
+    typename T_Foo,
     class T_FooBar
 >
 class Bob;
@@ -450,7 +457,7 @@ class Bob;
   - template type `T_Type` **can** be used without type renaming with `using` or `typedef`
 ```C++
 template<
-    std::size_t T_fooSize, 
+    std::size_t T_fooSize,
     bool T_fooBool
 >
 class Bob;
@@ -461,13 +468,13 @@ class Bob;
 template<
     std::size_t T_fooSize
 >
-using BobWithoutBool = 
+using BobWithoutBool =
     Bob<
         fooSize,
         true
     >;
 ```
-  - each template argument is on a separate line 
+  - each template argument is on a separate line
   - the *oc-token* `>` is on the same indentation level as the opening line
 ```C++
 template<
@@ -508,17 +515,17 @@ foo<
 
 
 ## 18. Template Functions and Classes as Expression
-  - for one template parameter 
+  - for one template parameter
     - use one line e.g., `method< 2 >( );`, `Foo< int >( )`
     - parameter is surrounded by spaces ( regex: `name<[:space:]param[:space:]>( )` )
   - for more than one template parameter place each indented on a new line
   - `< ... >` are part of the *function*, no space to the function name
 ```C++
-void 
+void
 foo( )
 {
     method< int >( globalBob );
-    method< 
+    method<
         int,
         float
     >(
@@ -527,7 +534,7 @@ foo( )
     );
     
     FooClass< int >( );
-    FooClass< 
+    FooClass<
         int,
         float
     >( );
@@ -539,7 +546,7 @@ foo( )
         float
     >;
         
-    // C++98    
+    // C++98
     typedef FooClass< int > type3;
 }
 ```
@@ -567,7 +574,7 @@ namespace traits
     >
     struct GetValueType
     {
-        using type = typename T_Type::value_type; 
+        using type = typename T_Type::value_type;
     };
 } // namespace traits
 ```
