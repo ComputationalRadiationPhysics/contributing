@@ -7,3 +7,4 @@ Contributing to ComputationalRadiationPhysics Repositories
 # Quick Links
 
 - [C++ Coding Guidelines](codingGuideLines/cpp.md)
+- [C++ Code Style for current CLion](IDESettings/CLion/CRP_CLion2016_1.xml)
