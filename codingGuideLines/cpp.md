@@ -291,8 +291,11 @@ size( ) const
   - the function / method body `{ }` is followed by an empty line
 ```C++
 __device__ static
-const int
-incrementValue( int const & a )
+auto
+incrementValue(
+    int & a
+)
+-> int
 {
     return a++;
 } // followed by an empty line
