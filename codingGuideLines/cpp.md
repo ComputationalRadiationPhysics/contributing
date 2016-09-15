@@ -185,8 +185,8 @@ namespace alice
     >                                                                         \
     HDINLINE                                                                  \
     void                                                                      \
-    //         ( const T0, ... , const TN           )                         \
-    operator( )( BOOST_PP_ENUM_PARAMS( N, const T ) ) const
+    //         ( T0 const, ... , TN const           )                         \
+    operator( )( BOOST_PP_ENUM_PARAMS( N, T const ) ) const
 ```
 
 
@@ -203,7 +203,7 @@ namespace alice
 void
 method(
     int & bob,
-    const int & alice = 5
+    int const & alice = 5
 )
 {
     int bob( 10 );
