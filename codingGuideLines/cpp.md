@@ -448,11 +448,30 @@ struct BobClass
 
 
 ## 17. Template Class / Struct and Type Definitions
+  - avoid the keyword `class` inside template definitions
+```C++
+template<
+    typename T_Foo,
+    class T_FooBar // wrong keyword, should be `typename`
+>
+class Bob;
+```
+  - keyword `class` is allowed for template template specialization
+```
+template<
+    typename T_Foo,
+    template<
+        typename, 
+        int
+    > class T_FooBar // keyword `class` is allowed
+>
+class Foo;
+```
   - for types ( class, struct and native C types ) template arguments shall be prefixed with T_ followed by an **upper case letter** camel case
 ```C++
 template<
     typename T_Foo,
-    class T_FooBar
+    typename T_FooBar
 >
 class Bob;
 ```
