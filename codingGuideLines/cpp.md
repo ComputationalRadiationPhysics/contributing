@@ -601,7 +601,7 @@ namespace traits
 ```
 
 
-## 20. Short Access to `::type` in C++11
+## 20. Short Access to Member type/value in C++11
   - add suffix `_t` to the trait name for short access to `::type` ( [same as remove_pointer_t in C++14](http://en.cppreference.com/w/cpp/types/remove_pointer) )
 ```C++
 template<
@@ -609,3 +609,11 @@ template<
 >
 using GetValueType_t = typename traits::GetValueType< T_Type >::type;
 ```
+  - add suffix `_v` to the trait name for short access to `::value` ( [same as std::rank_v](http://en.cppreference.com/w/cpp/types/rank) )
+```C++
+template<
+    typename T_Type
+>
+using IsValid_v = traits::IsValid< T_Type >::value;
+```
+
