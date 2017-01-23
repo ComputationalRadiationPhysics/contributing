@@ -2,8 +2,8 @@
 # General C++ Style Guide
 
 ## Namings
-  - oc-token = open close toke such as parenthesis `[,]`, `(,)`, `{,}` and `<,>`
-  - prefix tag = all characters before a *oc-token*
+  - oc-token = open close token such as parenthesis `[,]`, `(,)`, `{,}` and `<,>`
+  - prefix tag = all characters before an *oc-token*
   - operator = math operator symbols like `+`, `-`, `/` ...
   - regex = regular expression to indicate where spaces must be placed
     - `{...}` = optional definition of `...`
@@ -42,33 +42,33 @@
 ## 3. Global Rules
   - wrap a line after column 80
   - **no TABS**, use four (**4**) spaces per indentation level
-  - no code alignment (only indention)
+  - no code alignment (only indentation)
   - names are always written in camel case syntax e.g., `ThisIsCamelCase`, `thisIsAlsoCamelCase` ( except: macros and defines )
   - if there is no content between `{ }`, `< >`, `[ ]` or `( )`
     - the *oc-token* token **must** be on the same line
     - one space between both *oc-tokens* ( regex: `<[:space:]>` )
   - *oc-token* `{ }`
-    - `{` is always placed on a new line ( same indentation level than the line before ) and followed by a new line
-    - `}` is always placed on the same indention level than the opening token
+    - `{` is always placed on a new line ( same indentation level as the line before ) and followed by a new line
+    - `}` is always placed on the same indentation level as the opening token
   - *oc-token* `( )`
     - for function / method signatures
       - `(` is placed after a *prefix tag* without a space before e.g., `method( );`
-      - `(` must followed by a new line ( except: if `( )` empty )
-      - `)` is always placed on the same indention level than the opening token ( except: if `( )` is empty )
+      - `(` must be followed by a new line ( except: if `( )` empty )
+      - `)` is always placed on the same indentation level as the opening token ( except: if `( )` is empty )
     - for expressions e.g., `( a + 1 ) * 5;`
-      - can placed on one line
+      - can be placed on one line
       - after 80 characters a new line **must** follow
-      - after first new line start indention, see section [Operators](cpp.md#8-Operators)
+      - after first new line start indentation, see section [Operators](cpp.md#8-Operators)
     - for function calls e.g., `foo( this );`
       - for one function parameter use one line
-      - for more than one function parameter place each indented on a new line see section [Function Calls](cpp.md#9-Function Calls)
-  - usage of end of line spaces is **not** allowed
+      - for more than one function parameter place each indented on a new line, see section [Function Calls](cpp.md#9-Function Calls)
+  - usage of end-of-line spaces is **not** allowed
   - it is not allowed to place a space before `;`
   - semicolon `;` is always followed by a new line
 
 
 ## 4. Comments
-  - multi line comments
+  - multiline comments
     - begin with `/*` ( or `/**` for doxygen) followed by a space ( regex: `/*[:space:]` )
     - end with `*/` on a **new line**
     - each line between begin and end starts with ` *` ( regex: `[:indentation:][:space:]*{[:space:]comment}` )
@@ -82,9 +82,9 @@
  *#################################################
  */
 ```
-  - doxygen inside comments is highly encouraged see section [doxygen](cpp.md#5-Doxygen-Comments)
+  - doxygen inside comments is highly encouraged, see section [doxygen](cpp.md#5-Doxygen-Comments)
 ```C++
-/* this is a multi line comment
+/* this is a multiline comment
  * where the end tag is on a new line
  */
 
@@ -93,12 +93,12 @@
 
 
 ## 5. Doxygen Comments
-   - multi line comments **must** be used for doxygen comments
+   - multiline comments **must** be used for doxygen comments
    - brief
      - begins with `/**`
      - should be a single line comment
    - long description
-     - is separated with a empty line
+     - is separated with an empty line
      - is not aligned with the brief line
    - use `@` for doxygen commands e.g., `@param`, `@return`, `@{`
    - commands which should only rarely be used e.g., for code parts that are included from (license compatible!) third party projects (use the copyright header for full files or files that mainly consist of the external code)
@@ -272,7 +272,7 @@ foo( )
 
 
 ## 12. Function and Method Definitions
-  - functions and methods are named camel case with a beginning lower case letter
+  - functions and methods are named in camel case with a beginning lower case letter
   - the function/method prefix **must** be placed on a separate line e.g., `inline`, `static` , `__device__`
   - the result type
     - **must** be placed on a separate line (sometimes the result is very long)
@@ -285,8 +285,8 @@ size( ) const
 ```
   - function / method name must placed on a new line followed by the *oc-token* `(`
   - *oc-token* `(` must be followed by a new line
-  - *oc-token* `)` is on a new line with the same indention level than `(`
-  - method type qualifier are placed after `)`
+  - *oc-token* `)` is on a new line with the same indentation level as `(`
+  - method type qualifiers are placed after `)`
   - code between `{` and `}` is indented
   - the function / method body `{ }` is followed by an empty line
 ```C++
@@ -371,7 +371,7 @@ for(
     ++it
 )
 {
-    // this is a loop with long type names in it's parameters
+    // this is a loop with long type names in its parameters
 }
 ```
   - while loop
@@ -411,7 +411,7 @@ while( i != endOfLoop );
     - `:` is placed after the class name (regex: `ClassName[:space:]:`)
     - parent classes are indented and placed on a new line
     - each parent class is placed on a separate line
-    - visibility definitions like `public`, `private` and `protected` must placed inline with the parent class
+    - visibility definitions like `public`, `private` and `protected` must be placed inline with the parent class
   - in C++11 `using` shall be preferred over `typedef`
 ```C++
 struct BobClass final :
@@ -475,7 +475,7 @@ template<
 >
 class Bob;
 ```
-  - for values, template arguments shall prefixed with T_ followed by a **lower case letter** and do also in camel case
+  - for values, template arguments shall be prefixed with T_ followed also by camel case starting with a **lower case letter**  
   - template type `T_Type` **can** be used without type renaming with `using` or `typedef`
 ```C++
 template<
@@ -484,7 +484,7 @@ template<
 >
 class Bob;
 ```
-  - for C++11 `using` new line after assign `=` mandatory ( definition is indented )
+  - for C++11 `using` a new line after assign `=` is mandatory ( definition is indented )
 ```C++
 // C++11
 template<
@@ -539,7 +539,7 @@ foo<
   - for one template parameter
     - use one line e.g., `method< 2 >( );`, `Foo< int >( )`
     - parameter is surrounded by spaces ( regex: `name<[:space:]param[:space:]>( )` )
-  - for more than one template parameter place each indented on a new line
+  - for more than one template parameter place each one indented on a new line
   - `< ... >` are part of the *function*, no space to the function name
 ```C++
 void
@@ -573,7 +573,7 @@ foo( )
 ```
 
 
-## 19. Nameing for Embedded Types
+## 19. Naming for Embedded Types
   - for result of a type trait `::type` must be used
   - to get the type of an embedded value `::value_type`
   - to access embedded values in types `::value`
