@@ -241,6 +241,7 @@ foo( )
 
 ## 10. Type Definitions
   - the type qualifier `const` is placed right hand of the type that shall be const
+    - note: `constexpr` is *not* a type qualifier, but an *expression qualifier*, write it *left* of the type!
   - `&` (reference) and `*` (pointer) **must** be surrounded by **one** space
 ```C++
 int const * byte;  // pointer to const int value
@@ -248,6 +249,8 @@ int const * const byte; // const pointer to const int value
 int * const byte; // const pointer to int value
 int * byte; // pointer to int value
 int* byte; // NOT ALLOWED by the coding guide lines (missing spaces around `*`)
+
+constexpr int i = 5; // this is a constant expression with ints
 ```
 
 
