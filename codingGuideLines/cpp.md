@@ -16,15 +16,44 @@
     - copyright notice
       - the corresponding license header, author(s) + current year ( if changed - and a commit of a file means a change )
       - you **never remove** an author or a year, you *only add to them*
-    - a `#pragma once` as guard to prevent double includes ( do **not** use `#ifdef` guards )
+    - a `#pragma once` as guard to prevent double includes ( do **not** use `#ifdef` guards ) in header files
+    - doxygen `@file ...` documentation directly *after* the license header and *before* the `#pragma once`
   - includes:
     - order from the most specific/specialized to the most general one
     - objects used from an include **can** be added in a comment but should **at most** be used for stable third party includes (can be used for includes from `C++ STL`, `Boost`, ...)
+    - *two empty newlines* between the last include and the start of the code, *one* around `#pragma once`
 ```C++
+/* Copyright 2017 Max Mustermann
+ *
+ * <YourLicense header>
+ */
+
+/** @file file.hpp
+ *
+ * This is optional but can be useful for important files that do not only
+ * implement a single class which can get the full docstring for it.
+ * keep this text in one block, otherwise Doxygen will split it with wrong
+ * association with the next upcoming code or namespace.
+ */
+
+#pragma once
+
+#include "myproject/file.def"
+
 #include "myproject/myTypes.hpp"
 #include "myproject/unStableApiTraits.hpp" // is_const<>, is_trait<> -> this should be avoided
+
 #include <boost/mpl/vector.hpp>
 #include <boost/type_traits.hpp> // is_void<>, is_union<>
+
+#include <memory> // shared_ptr
+
+
+namespace myProject
+{
+    /* ...
+     */
+} // namespacee myProject
 ```
 
 
