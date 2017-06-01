@@ -101,7 +101,7 @@ namespace myProject
     - begin with `/*` ( or `/**` for doxygen) followed by a space ( regex: `/*[:space:]` )
     - end with `*/` on a **new line**
     - each line between begin and end starts with ` *` ( regex: `[:indentation:][:space:]*{[:space:]comment}` )
-  - single line comments begin with `//` followed by a space ( regex: `//[::space:]` )
+  - single line comments begin with `//` (or `//!` for doxygen) followed by a space ( regex: `//[::space:]` )
   - it is not allowed to format comments with long symbol repetition e.g., `// ################################`
 ```C++
 /*#################################################
@@ -122,8 +122,9 @@ namespace myProject
 
 
 ## 5. Doxygen Comments
-   - multiline comments **must** be used for doxygen comments
-   - brief
+   - oneline comments via `//!` should only be used when a brief title alone is descriptive enough (e.g. definition of a member variable)
+   - for all other, multiline comments **must** be used for doxygen comments
+   - brief ("title")
      - begins with `/**`
      - should be a single line comment
    - long description
@@ -145,7 +146,8 @@ namespace myProject
 /** brief description
  *
  * long description is not aligned with brief line
- * @bug always zero is returned
+ * @warning not thread save
+ * @todo pass control arguments as enum
  *
  * @tparam T_Foo is our first template parameter
  * @param a is our first parameter
@@ -164,6 +166,9 @@ functionName(
 {
     return 0;
 }
+
+//! add fairy dust
+bool const addMagic = true;
 ```
 
 
