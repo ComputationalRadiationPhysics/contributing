@@ -654,3 +654,10 @@ template<
 using IsValid_v = traits::IsValid< T_Type >::value;
 ```
 
+
+## 21. Special CUDA Syntax
+  - you must not add spaces between the individual brackets of the CUDA kernel brackets `<<<` and `>>>`
+```C++
+kernel<<< 1, 1 >>>( ); // OK
+kernel<< < 1, 1 > >>( ); // WRONG
+```
