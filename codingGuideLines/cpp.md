@@ -521,7 +521,7 @@ template<
 >
 class Bob;
 ```
-  - for C++11 `using` a new line after assign `=` is mandatory ( definition is indented )
+  - partial specialization using the C++11 keyword `using`
 ```C++
 // C++11
 template<
