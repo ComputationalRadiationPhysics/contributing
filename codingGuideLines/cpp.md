@@ -225,7 +225,7 @@ namespace alice
 
 
 ## 8. Operators
-  - unary operators are placed directly before or behind the corresponding object e.g., `i++`, `++i`
+  - unary operators are placed directly before or behind the corresponding object e.g., `i++`, `++i` and `!enabled`
   - binary operators
     - are surrounded by spaces e.g., `x = a + b;`
     - comma `,` ( d: in function signatures ) is **always** followed by a new line with same indent
