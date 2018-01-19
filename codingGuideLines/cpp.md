@@ -291,8 +291,8 @@ constexpr int i = 5; // this is a constant expression with ints
 ## 11. Type Instantiations
   - if possible do not use the assignment operator
 ```C++
-float foo = 1; // should be avoided
-float foo( 1 ); // should be preferred, if possible
+int foo = 1; // should be avoided
+int foo( 1 ); // should be preferred, if possible
 ```
   - use of initialization lists in C++11
 ```C++
