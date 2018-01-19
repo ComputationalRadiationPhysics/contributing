@@ -296,15 +296,11 @@ float foo( 1 ); // should be preferred, if possible
 ```
   - use of initialization lists in C++11
 ```C++
-void
-foo( )
-{
-    float foo{ 1 };
-    float * ptr = new T_Type{
-        1,
-        2
-    };
-}
+int foo{ 1 };
+std::complex< double > bar{
+    1.0,
+    2.0
+};
 ```
 
 
