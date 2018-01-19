@@ -299,7 +299,7 @@ float foo( 1 ); // should be preferred, if possible
 void
 foo( )
 {
-    float fooo{ 1 };
+    float foo{ 1 };
     float * ptr = new T_Type{
         1,
         2
