@@ -306,8 +306,8 @@ std::complex< double > bar{
 
 ## 12. Function and Method Definitions
   - functions and methods are named in camel case with a beginning lower case letter
-  - the function/method prefix **must** be placed on a separate line e.g., `inline`, `static` , `__device__`
-  - the result type
+  - the function/method specifier **must** be placed on a separate line e.g., `inline`, `static` , `__device__`
+  - the return type
     - **must** be placed on a separate line (sometimes the result is very long)
     - in C++11 result is always `auto` and [trailing return type definition](http://en.cppreference.com/w/cpp/language/function) is used
     - trailing return type definition is on a new line
