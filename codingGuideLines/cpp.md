@@ -393,7 +393,7 @@ switch( expression )
 ## 15. Loops
   - complex parameter **can** be placed on separate lines
 ```C++
-for( int i = 0; i <= i + 1; ++i )
+for( int i = 0; i < 10; ++i )
 {
     // this is a simple loop
 }
