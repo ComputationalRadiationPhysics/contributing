@@ -337,7 +337,7 @@ int globalA;
 ```
 
 
-## 13. if Conditions
+## 13. If Statements
 
 - omit curly `{ }` braces for one-liners
 - indent the body
