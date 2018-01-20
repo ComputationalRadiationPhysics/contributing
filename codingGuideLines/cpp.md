@@ -373,7 +373,7 @@ else
   - `case` is indented
   - new line after `:`
 ```C++
-switch( value )
+switch( expression )
 {
     case 'A':
         bob++;
