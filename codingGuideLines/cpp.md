@@ -369,7 +369,7 @@ else
 ```
 
 
-## 14. Switch Case
+## 14. Switch Statements
   - `case` is indented
   - new line after `:`
 ```C++
