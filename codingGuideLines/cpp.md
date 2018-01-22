@@ -256,7 +256,7 @@ method(
 ## 9. Function Calls
   - for **one** function parameter
     - use one line e.g., `method( 2 );`
-    - parameter is surrounded by spaces ( regex: `functionName([:space:]param[:space:])` )
+    - parameter is surrounded by spaces
   - for **more than one** function parameter place each indented on a new line
   - `( ... )` are part of the *caller* (see above), no space to that caller
 ```C++
