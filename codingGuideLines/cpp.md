@@ -480,7 +480,7 @@ struct BobClass
 ```
 
 
-## 17. Class / Struct Template Definitions
+## 17. Template Declarations and Specializations
   - avoid the keyword `class` inside template definitions
 ```C++
 template<
