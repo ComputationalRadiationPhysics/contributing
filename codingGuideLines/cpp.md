@@ -640,7 +640,7 @@ namespace traits
 template<
     typename T_Type
 >
-using GetValueType_t = typename traits::GetValueType< T_Type >::type;
+using ValueType_t = typename traits::ValueType< T_Type >::type;
 ```
   - add suffix `_v` to the trait name for short access to `::value` ( [same as std::rank_v](http://en.cppreference.com/w/cpp/types/rank) )
 ```C++
