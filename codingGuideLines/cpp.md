@@ -272,7 +272,7 @@ foo( )
 ```
 
 
-## 10. Type Definitions
+## 10. Variable Declarations
   - the type qualifier `const` is placed right hand of the type that shall be const
     - note: `constexpr` is *not* a type qualifier, but an *expression qualifier*, write it *left* of the type!
   - `&` (reference) and `*` (pointer) **must** be surrounded by **one** space
@@ -285,15 +285,12 @@ int* byte; // NOT ALLOWED by the coding guide lines (missing spaces around `*`)
 
 constexpr int i = 5; // this is a constant expression with ints
 ```
-
-
-## 11. Type Instantiations
-  - if possible do not use the assignment operator
+  - if possible use direct initialization over the assignment syntax
 ```C++
-int foo = 1; // should be avoided
 int foo( 1 ); // should be preferred, if possible
+int foo = 1; // should be avoided
 ```
-  - use of initialization lists in C++11
+  - use initialization lists in C++11
 ```C++
 int foo{ 1 };
 std::complex< double > bar{
@@ -303,7 +300,7 @@ std::complex< double > bar{
 ```
 
 
-## 12. Function and Method Definitions
+## 11. Function and Method Definitions
   - functions and methods are named in camel case with a beginning lower case letter
   - the function/method specifier **must** be placed on a separate line e.g., `inline`, `static` , `__device__`
   - the return type
@@ -336,7 +333,7 @@ int globalA;
 ```
 
 
-## 13. If Statements
+## 12. If Statements
 
 - omit curly `{ }` braces for one-liners
 - indent the body
@@ -368,7 +365,7 @@ else
 ```
 
 
-## 14. Switch Statements
+## 13. Switch Statements
   - `case` is indented
   - new line after `:`
 ```C++
@@ -389,7 +386,7 @@ switch( expression )
 ```
 
 
-## 15. Loops
+## 14. Loops
   - complex parameter **can** be placed on separate lines
 ```C++
 for( int i = 0; i < 10; ++i )
@@ -431,7 +428,7 @@ while( i != endOfLoop );
 ```
 
 
-## 16. Classes, Structs and Type Definitions
+## 15. Classes, Structs and Type Definitions
   - use camel case names that start with an **upper case letter** e.g., `ClassBob`, `TypeNameBob`
   - semicolon `;` **must** be placed after the closing parenthesis `}`
   - code between `{` and `};`
@@ -479,7 +476,7 @@ struct BobClass
 ```
 
 
-## 17. Template Declarations and Specializations
+## 16. Template Declarations and Specializations
   - type ( class, struct ) template parameters shall be prefixed with T_ followed by an **upper case letter** camel case
 ```C++
 template<
@@ -567,7 +564,7 @@ foo<
 ```
 
 
-## 18. Template Functions and Classes as Expression
+## 17. Template Functions and Classes as Expression
   - for one template argument
     - use one line e.g., `method< 2 >( );`, `Foo< int >( )`
     - parameter is surrounded by spaces ( regex: `name<[:space:]param[:space:]>( )` )
@@ -605,7 +602,7 @@ foo( )
 ```
 
 
-## 19. Naming for Embedded Types
+## 18. Naming for Embedded Types
   - for result of a type trait `::type` must be used
   - to get the type of an embedded value `::value_type`
   - to access embedded values in types `::value`
@@ -633,7 +630,7 @@ namespace traits
 ```
 
 
-## 20. Short Access to Member type/value in C++11
+## 19. Short Access to Member type/value in C++11
   - add suffix `_t` to the trait name for short access to `::type` ( [same as remove_pointer_t in C++14](http://en.cppreference.com/w/cpp/types/remove_pointer) )
 ```C++
 template<
@@ -650,7 +647,7 @@ using IsValid_v = traits::IsValid< T_Type >::value;
 ```
 
 
-## 21. Special CUDA Syntax
+## 20. Special CUDA Syntax
   - you must not add spaces between the individual brackets of the CUDA kernel brackets `<<<` and `>>>`
 ```C++
 kernel<<< 1, 1 >>>( ); // OK
