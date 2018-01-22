@@ -432,7 +432,7 @@ while( i != endOfLoop );
   - use camel case names that start with an **upper case letter** e.g., `ClassBob`, `TypeNameBob`
   - semicolon `;` **must** be placed after the closing parenthesis `}`
   - code between `{` and `};`
-    - visibility definitions like `public:`, `private:` and `protected:` are not indented
+    - access specifiers `public`, `private` and `protected` are not indented
     - all other code is indented
   - fixed prefix for each class is not allowed e.g., `QApplication`, `QWidget` (use namespaces)
   - inheritance
@@ -440,7 +440,7 @@ while( i != endOfLoop );
     - `:` is placed after the class name (regex: `ClassName[:space:]:`)
     - parent classes are indented and placed on a new line
     - each parent class is placed on a separate line
-    - visibility definitions like `public`, `private` and `protected` must be placed inline with the parent class
+    - access specifiers `public`, `private` and `protected` and 'virtual' specifier must be placed inline with the parent class
   - in C++11 `using` shall be preferred over `typedef`
 ```C++
 struct BobClass final :
