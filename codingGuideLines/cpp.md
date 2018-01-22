@@ -481,7 +481,15 @@ struct BobClass
 
 
 ## 17. Template Declarations and Specializations
-  - avoid the keyword `class` inside template definitions
+  - type ( class, struct ) template parameters shall be prefixed with T_ followed by an **upper case letter** camel case
+```C++
+template<
+    typename T_Foo,
+    typename T_FooBar
+>
+class Bob;
+```
+  - for type template parameters use `typename` over `class`
 ```C++
 template<
     typename T_Foo,
@@ -489,7 +497,7 @@ template<
 >
 class Bob;
 ```
-  - keyword `class` is allowed for template specialization
+  - for template template parameters keyword `class` is allowed
 ```C++
 template<
     typename T_Foo,
@@ -500,16 +508,8 @@ template<
 >
 class Foo;
 ```
-  - for types ( class, struct and native C types ) template arguments shall be prefixed with T_ followed by an **upper case letter** camel case
-```C++
-template<
-    typename T_Foo,
-    typename T_FooBar
->
-class Bob;
-```
-  - for values, template arguments shall be prefixed with T_ followed also by camel case starting with a **lower case letter**  
-  - template type `T_Type` **can** be used without type renaming with `using` or `typedef`
+  - non-type template parameters shall be prefixed with T_ followed also by camel case starting with a **lower case letter**  
+  - type template parameter `T_Type` **can** be used without type renaming with `using` or `typedef`
 ```C++
 template<
     std::size_t T_fooSize,
@@ -517,7 +517,7 @@ template<
 >
 class Bob;
 ```
-  - partial specialization using the C++11 keyword `using`
+  - alias templates in C++11 with `using` keyword
 ```C++
 // C++11
 template<
@@ -528,7 +528,7 @@ using BobWithoutBool = Bob<
     true
 >;
 ```
-  - each template argument is on a separate line
+  - each template parameter is on a separate line
   - the *oc-token* `>` is on the same indentation level as the opening line
 ```C++
 template<
@@ -569,10 +569,10 @@ foo<
 
 
 ## 18. Template Functions and Classes as Expression
-  - for one template parameter
+  - for one template argument
     - use one line e.g., `method< 2 >( );`, `Foo< int >( )`
     - parameter is surrounded by spaces ( regex: `name<[:space:]param[:space:]>( )` )
-  - for more than one template parameter place each one indented on a new line
+  - for more than one template argument place each one indented on a new line
   - `< ... >` are part of the *function*, no space to the function name
 ```C++
 void
