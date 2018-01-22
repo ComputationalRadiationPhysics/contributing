@@ -626,7 +626,7 @@ namespace traits
     template<
         typename T_Type
     >
-    struct GetValueType
+    struct ValueType
     {
         using type = typename T_Type::value_type;
     };
