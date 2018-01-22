@@ -480,7 +480,7 @@ struct BobClass
 ```
 
 
-## 17. Template Class / Struct and Type Definitions
+## 17. Class / Struct Template Definitions
   - avoid the keyword `class` inside template definitions
 ```C++
 template<
@@ -545,7 +545,7 @@ foo(
     T_Foo
 >; // this is not aligned with mem
 
-// template function specialization
+// function template specialization
 template< >
 auto
 foo<
