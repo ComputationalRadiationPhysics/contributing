@@ -93,7 +93,7 @@ namespace myProject
       - for more than one function parameter place each indented on a new line, see section [Function Calls](cpp.md#9-Function Calls)
   - usage of end-of-line spaces is **not** allowed
   - it is not allowed to place a space before `;`
-  - semicolon `;` is always followed by a new line
+  - semicolon `;` is always followed by a new line, except in short `for` statements
 
 
 ## 4. Comments
