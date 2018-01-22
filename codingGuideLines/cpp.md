@@ -564,7 +564,7 @@ foo<
 ```
 
 
-## 17. Template Functions and Classes as Expression
+## 17. Template Instantiations
   - for one template argument
     - use one line e.g., `method< 2 >( );`, `Foo< int >( )`
     - parameter is surrounded by spaces ( regex: `name<[:space:]param[:space:]>( )` )
