@@ -277,11 +277,11 @@ foo( )
     - note: `constexpr` is *not* a type qualifier, but an *expression qualifier*, write it *left* of the type!
   - `&` (reference) and `*` (pointer) **must** be surrounded by **one** space
 ```C++
-int const * byte;  // pointer to const int value
-int const * const byte; // const pointer to const int value
-int * const byte; // const pointer to int value
-int * byte; // pointer to int value
-int* byte; // NOT ALLOWED by the coding guide lines (missing spaces around `*`)
+int const * foo;  // pointer to const int value
+int const * const foo; // const pointer to const int value
+int * const foo; // const pointer to int value
+int * foo; // pointer to int value
+int* foo; // NOT ALLOWED by the coding guide lines (missing spaces around `*`)
 
 constexpr int i = 5; // this is a constant expression with ints
 ```
