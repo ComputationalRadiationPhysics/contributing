@@ -490,7 +490,7 @@ template<
 class Bob;
 ```
   - keyword `class` is allowed for template specialization
-```
+```C++
 template<
     typename T_Foo,
     template<
