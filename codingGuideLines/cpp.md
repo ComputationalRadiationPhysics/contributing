@@ -489,7 +489,7 @@ template<
 >
 class Bob;
 ```
-  - keyword `class` is allowed for template template specialization
+  - keyword `class` is allowed for template specialization
 ```
 template<
     typename T_Foo,
