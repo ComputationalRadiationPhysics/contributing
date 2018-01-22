@@ -477,7 +477,7 @@ struct BobClass
 
 
 ## 16. Template Declarations and Specializations
-  - type ( class, struct ) template parameters shall be prefixed with T_ followed by an **upper case letter** camel case
+  - type ( class, struct ) template parameters shall be prefixed with `T_` followed by an **upper case letter** camel case
 ```C++
 template<
     typename T_Foo,
@@ -504,7 +504,7 @@ template<
 >
 class Foo;
 ```
-  - non-type template parameters shall be prefixed with T_ followed also by camel case starting with a **lower case letter**  
+  - non-type template parameters shall be prefixed with `T_` followed also by camel case starting with a **lower case letter**  
   - type template parameter `T_Type` **can** be used without type renaming with `using` or `typedef`
 ```C++
 template<
