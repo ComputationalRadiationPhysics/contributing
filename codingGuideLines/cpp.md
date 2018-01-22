@@ -321,12 +321,12 @@ size( ) const
 ```C++
 __device__ static
 auto
-incrementValue(
-    int & a
+square(
+    int const a
 )
 -> int
 {
-    return a++;
+    return a * a;
 } // followed by an empty line
 
 int globalA;
