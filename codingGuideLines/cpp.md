@@ -93,7 +93,7 @@ namespace myProject
       - for more than one function parameter place each indented on a new line, see section [Function Calls](cpp.md#9-Function Calls)
   - usage of end-of-line spaces is **not** allowed
   - it is not allowed to place a space before `;`
-  - semicolon `;` is always followed by a new line
+  - semicolon `;` is always followed by a new line, except in *short* (one-line) `for` statements
 
 
 ## 4. Comments
@@ -256,10 +256,9 @@ method(
 ## 9. Function Calls
   - for **one** function parameter
     - use one line e.g., `method( 2 );`
-    - parameter is surrounded by spaces ( regex: `functionName([:space:]param[:space:])` )
+    - parameter is surrounded by spaces
   - for **more than one** function parameter place each indented on a new line
   - `( ... )` are part of the *caller* (see above), no space to that caller
-  - `if`, `while` and `switch` follows the same rules
 ```C++
 void
 foo( )
@@ -273,48 +272,41 @@ foo( )
 ```
 
 
-## 10. Type Definitions
+## 10. Variable Declarations
   - the type qualifier `const` is placed right hand of the type that shall be const
     - note: `constexpr` is *not* a type qualifier, but an *expression qualifier*, write it *left* of the type!
   - `&` (reference) and `*` (pointer) **must** be surrounded by **one** space
 ```C++
-int const * byte;  // pointer to const int value
-int const * const byte; // const pointer to const int value
-int * const byte; // const pointer to int value
-int * byte; // pointer to int value
-int* byte; // NOT ALLOWED by the coding guide lines (missing spaces around `*`)
+int const * foo;  // pointer to const int value
+int const * const foo; // const pointer to const int value
+int * const foo; // const pointer to int value
+int * foo; // pointer to int value
+int* foo; // NOT ALLOWED by the coding guide lines (missing spaces around `*`)
 
 constexpr int i = 5; // this is a constant expression with ints
 ```
-
-
-## 11. Type Instantiations
-  - if possible do not use the assignment operator
+  - if possible use direct initialization over the assignment syntax
 ```C++
-float foo = 1; // should be avoided
-float foo( 1 ); // should be preferred, if possible
+int foo( 1 ); // should be preferred, if possible
+int foo = 1; // should be avoided
 ```
-  - use of initialization lists in C++11
+  - use initialization lists in C++11
 ```C++
-void
-foo( )
-{
-    float fooo{ 1 };
-    float * ptr = new T_Type{
-        1,
-        2
-    };
-}
+int foo{ 1 };
+std::complex< double > bar{
+    1.0,
+    2.0
+};
 ```
 
 
-## 12. Function and Method Definitions
+## 11. Function and Method Definitions
   - functions and methods are named in camel case with a beginning lower case letter
-  - the function/method prefix **must** be placed on a separate line e.g., `inline`, `static` , `__device__`
-  - the result type
+  - the function/method specifier **must** be placed on a separate line e.g., `inline`, `static` , `__device__`
+  - the return type
     - **must** be placed on a separate line (sometimes the result is very long)
-    - in C++11 result is always `auto` and [trailing return type definition](http://en.cppreference.com/w/cpp/language/function) is used
-    - trailing return type definition is on a new line
+    - in C++11 `auto` specifier and [trailing return type](http://en.cppreference.com/w/cpp/language/function) are used
+    - trailing return type declaration is on a new line
 ```C++
 auto
 size( ) const
@@ -329,19 +321,19 @@ size( ) const
 ```C++
 __device__ static
 auto
-incrementValue(
-    int & a
+square(
+    int const a
 )
 -> int
 {
-    return a++;
+    return a * a;
 } // followed by an empty line
 
 int globalA;
 ```
 
 
-## 13. if Conditions
+## 12. If Statements
 
 - omit curly `{ }` braces for one-liners
 - indent the body
@@ -373,11 +365,11 @@ else
 ```
 
 
-## 14. Switch Case
+## 13. Switch Statements
   - `case` is indented
   - new line after `:`
 ```C++
-switch( value )
+switch( expression )
 {
     case 'A':
         bob++;
@@ -394,10 +386,10 @@ switch( value )
 ```
 
 
-## 15. Loops
+## 14. Loops
   - complex parameter **can** be placed on separate lines
 ```C++
-for( int i = 0; i <= i + 1; ++i )
+for( int i = 0; i < 10; ++i )
 {
     // this is a simple loop
 }
@@ -436,11 +428,11 @@ while( i != endOfLoop );
 ```
 
 
-## 16. Classes, Structs and Type Definitions
+## 15. Classes, Structs and Type Definitions
   - use camel case names that start with an **upper case letter** e.g., `ClassBob`, `TypeNameBob`
   - semicolon `;` **must** be placed after the closing parenthesis `}`
   - code between `{` and `};`
-    - visibility definitions like `public:`, `private:` and `protected:` are not indented
+    - access specifiers `public`, `private` and `protected` are not indented
     - all other code is indented
   - fixed prefix for each class is not allowed e.g., `QApplication`, `QWidget` (use namespaces)
   - inheritance
@@ -448,7 +440,7 @@ while( i != endOfLoop );
     - `:` is placed after the class name (regex: `ClassName[:space:]:`)
     - parent classes are indented and placed on a new line
     - each parent class is placed on a separate line
-    - visibility definitions like `public`, `private` and `protected` must be placed inline with the parent class
+    - access specifiers `public`, `private` and `protected` and 'virtual' specifier must be placed inline with the parent class
   - in C++11 `using` shall be preferred over `typedef`
 ```C++
 struct BobClass final :
@@ -484,8 +476,16 @@ struct BobClass
 ```
 
 
-## 17. Template Class / Struct and Type Definitions
-  - avoid the keyword `class` inside template definitions
+## 16. Template Declarations and Specializations
+  - type ( class, struct ) template parameters shall be prefixed with `T_` followed by an **upper case letter** camel case
+```C++
+template<
+    typename T_Foo,
+    typename T_FooBar
+>
+class Bob;
+```
+  - for type template parameters use `typename` over `class`
 ```C++
 template<
     typename T_Foo,
@@ -493,8 +493,8 @@ template<
 >
 class Bob;
 ```
-  - keyword `class` is allowed for template template specialization
-```
+  - for template template parameters keyword `class` is allowed
+```C++
 template<
     typename T_Foo,
     template<
@@ -504,16 +504,8 @@ template<
 >
 class Foo;
 ```
-  - for types ( class, struct and native C types ) template arguments shall be prefixed with T_ followed by an **upper case letter** camel case
-```C++
-template<
-    typename T_Foo,
-    typename T_FooBar
->
-class Bob;
-```
-  - for values, template arguments shall be prefixed with T_ followed also by camel case starting with a **lower case letter**  
-  - template type `T_Type` **can** be used without type renaming with `using` or `typedef`
+  - non-type template parameters shall be prefixed with `T_` followed also by camel case starting with a **lower case letter**  
+  - type template parameter `T_Type` **can** be used without type renaming with `using` or `typedef`
 ```C++
 template<
     std::size_t T_fooSize,
@@ -521,7 +513,7 @@ template<
 >
 class Bob;
 ```
-  - partial specialization using the C++11 keyword `using`
+  - alias templates in C++11 with `using` keyword
 ```C++
 // C++11
 template<
@@ -532,7 +524,7 @@ using BobWithoutBool = Bob<
     true
 >;
 ```
-  - each template argument is on a separate line
+  - each template parameter is on a separate line
   - the *oc-token* `>` is on the same indentation level as the opening line
 ```C++
 template<
@@ -549,7 +541,7 @@ foo(
     T_Foo
 >; // this is not aligned with mem
 
-// template function specialization
+// function template specialization
 template< >
 auto
 foo<
@@ -572,11 +564,11 @@ foo<
 ```
 
 
-## 18. Template Functions and Classes as Expression
-  - for one template parameter
+## 17. Template Instantiations
+  - for one template argument
     - use one line e.g., `method< 2 >( );`, `Foo< int >( )`
     - parameter is surrounded by spaces ( regex: `name<[:space:]param[:space:]>( )` )
-  - for more than one template parameter place each one indented on a new line
+  - for more than one template argument place each one indented on a new line
   - `< ... >` are part of the *function*, no space to the function name
 ```C++
 void
@@ -610,7 +602,7 @@ foo( )
 ```
 
 
-## 19. Naming for Embedded Types
+## 18. Naming for Embedded Types
   - for result of a type trait `::type` must be used
   - to get the type of an embedded value `::value_type`
   - to access embedded values in types `::value`
@@ -630,7 +622,7 @@ namespace traits
     template<
         typename T_Type
     >
-    struct GetValueType
+    struct ValueType
     {
         using type = typename T_Type::value_type;
     };
@@ -638,13 +630,13 @@ namespace traits
 ```
 
 
-## 20. Short Access to Member type/value in C++11
+## 19. Short Access to Member type/value in C++11
   - add suffix `_t` to the trait name for short access to `::type` ( [same as remove_pointer_t in C++14](http://en.cppreference.com/w/cpp/types/remove_pointer) )
 ```C++
 template<
     typename T_Type
 >
-using GetValueType_t = typename traits::GetValueType< T_Type >::type;
+using ValueType_t = typename traits::ValueType< T_Type >::type;
 ```
   - add suffix `_v` to the trait name for short access to `::value` ( [same as std::rank_v](http://en.cppreference.com/w/cpp/types/rank) )
 ```C++
@@ -655,7 +647,7 @@ using IsValid_v = traits::IsValid< T_Type >::value;
 ```
 
 
-## 21. Special CUDA Syntax
+## 20. Special CUDA Syntax
   - you must not add spaces between the individual brackets of the CUDA kernel brackets `<<<` and `>>>`
 ```C++
 kernel<<< 1, 1 >>>( ); // OK
