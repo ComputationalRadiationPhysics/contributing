@@ -211,15 +211,15 @@ namespace alice
   - `#ifdef` **should not** be used to check own definitions ( use `#if( MYDEFINEDPARAM == 1 )` instead )
   - avoid preprocessor macros and use C++11 features if possible
   - comment preprocessor macros
-```
+```C++
 #define MY_MACRO( )                                                           \
     template<                                                                 \
-        // typename T0, ..., typename TN                                      \
+        /* typename T0, ..., typename TN */                                   \
         BOOST_PP_ENUM_PARAMS( N, typename T )                                 \
     >                                                                         \
     HDINLINE                                                                  \
     void                                                                      \
-    //         ( T0 const, ... , TN const           )                         \
+    /*         ( T0 const, ... , TN const           ) */                      \
     operator( )( BOOST_PP_ENUM_PARAMS( N, T const ) ) const
 ```
 
