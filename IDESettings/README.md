@@ -1,3 +1,12 @@
+# Code Style Configuration for Auto-Formatter
+
+## clang-format
+
+The `.clang-format` file is usually placed in the root of a project.
+Then execute `clang-format -i file.cpp` for in-place auto-formatting.
+
+- [clang-format 6.0](.clang-format)
+
 # Code Style Settings for IDEs
 
 ## CLion
