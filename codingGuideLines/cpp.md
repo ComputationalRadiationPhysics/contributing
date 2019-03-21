@@ -275,13 +275,16 @@ foo( )
 ## 10. Variable Declarations
   - the type qualifier `const` is placed right hand of the type that shall be const
     - note: `constexpr` is *not* a type qualifier, but an *expression qualifier*, write it *left* of the type!
-  - `&` (reference) and `*` (pointer) **must** be surrounded by **one** space
+  - `&` (reference), `&&` (universal reference), and `*` (pointer) **must** be surrounded by **one** space
 ```C++
 int const * foo;  // pointer to const int value
 int const * const foo; // const pointer to const int value
 int * const foo; // const pointer to int value
 int * foo; // pointer to int value
 int* foo; // NOT ALLOWED by the coding guide lines (missing spaces around `*`)
+for( auto && e : vector )
+{
+}
 
 constexpr int i = 5; // this is a constant expression with ints
 ```
