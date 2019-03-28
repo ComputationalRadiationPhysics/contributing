@@ -283,6 +283,7 @@ int const * const foo; // const pointer to const int value
 int * const foo; // const pointer to int value
 int * foo; // pointer to int value
 int ** foo;  // pointer to a pointer to int value
+int * const * foo; // pointer to a const pointer to int value
 int* foo; // NOT ALLOWED by the coding guide lines (missing spaces around `*`)
 for( auto && e : vector ) // universal references are packed
 {
