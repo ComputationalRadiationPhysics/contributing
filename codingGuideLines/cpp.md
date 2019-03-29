@@ -177,7 +177,7 @@ bool const addMagic = true;
   - it is not allowed to indent nested namespaces
   - each namespace is defined on a separate line
   - the closing parenthesis `}` of a namespace **must** be placed on a new line together with a namespace name as comment
-  ( regex: `}[::space://[:space:]namespace namespaceName`)`
+  ( regex: `}[:space:]//[:space:]namespace[:space:]namespaceName$`)
   - code inside the deepest namespace is indented
 ```C++
 namespace clair
@@ -186,7 +186,7 @@ namespace bob
 {
 namespace alice
 {
-    // this one gets intended
+    // this one gets indented
     struct FooMe;
 
 } // namespace alice
@@ -526,7 +526,7 @@ template<
     std::size_t T_fooSize
 >
 using BobWithoutBool = Bob<
-    fooSize,
+    T_fooSize,
     true
 >;
 ```
