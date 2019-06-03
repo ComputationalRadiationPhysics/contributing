@@ -273,7 +273,7 @@ foo( )
 
 
 ## 10. Variable Declarations
-  - the type qualifier `const` is placed *right* hand of the type that shall be const
+  - the type qualifier `const` is placed *right* hand of the type that shall be const ([East Const](https://mariusbancila.ro/blog/2018/11/23/join-the-east-const-revolution/))
     - note: `constexpr` is *not* a type qualifier, but an *expression qualifier*, write it *left* of the type!
   - `&` (reference), `&&` (universal reference), and `*` (pointer) **must** be surrounded by **one** space
     - note: multi-level pointers are **packed** though
