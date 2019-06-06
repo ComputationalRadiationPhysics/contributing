@@ -367,6 +367,7 @@ else if( b == 1 )
 else
 {
     foo( );
+    bar( );
 }
 ```
 
