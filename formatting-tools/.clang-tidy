@@ -1,5 +1,20 @@
-Checks: 'readability-identifier-naming'
+Checks: 'modernize-raw-string-literal,
+modernize-return-braced-init-list,
+modernize-unary-static-assert,
+modernize-use-auto,
+modernize-use-using,
+readability-identifier-naming,
+readability-isolate-declaration,
+readability-misplaced-array-index,
+readability-redundant-declaration,
+readability-redundant-function-ptr-dereference,
+readability-redundant-preprocessor,
+readability-simplify-boolean-expr,
+readability-simplify-subscript-expr'
 CheckOptions:
+  - { key: modernize-use-auto.MinTypeNameLength, value: 0}
+  - { key: modernize-use-auto.RemoveStars, value: 0}
+  - { key: modernize-use-using.IgnoreMacros, value: 0}
   - { key: readability-identifier-naming.AbstractClassCase, value: CamelCase}
   - { key: readability-identifier-naming.AggressiveDependentMemberLookup, value: 1}
   - { key: readability-identifier-naming.ClassCase, value: CamelCase}
@@ -51,3 +66,6 @@ CheckOptions:
   - { key: readability-identifier-naming.ValueTemplateParameterCase, value: CamelCase}
   - { key: readability-identifier-naming.VariableCase, value: lower_case}
   - { key: readability-identifier-naming.VirtualMethodCase, value: lower_case}
+  - { key: readability-redundant-declaration.IgnoreMacros, value: 0}
+  - { key: readability-simplify-boolean-expr.ChainedConditionalAssignment, value: 1}
+  - { key: readability-simplify-boolean-expr.ChainedConditionalReturn, value: 1}
