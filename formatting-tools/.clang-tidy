@@ -1,17 +1,26 @@
 Checks: 'bugprone-bool-pointer-implicit-conversion,
+bugprone-branch-clone,
 bugprone-copy-constructor-init,
 bugprone-forwarding-reference-overload,
+bugprone-infinite-loop,
 bugprone-misplaced-widening-cast,
 bugprone-parent-virtual-call,
+bugprone-redundant-branch-condition,
 bugprone-signed-char-misuse,
 bugprone-suspicious-enum-usage,
+bugprone-suspicious-semicolon,
 bugprone-swapped-arguments,
+bugprone-terminating-continue,
+bugprone-too-small-loop-variable,
 bugprone-undelegated-constructor,
 bugprone-unhandled-self-assignment,
+bugprone-unused-raii,
 bugprone-virtual-near-miss,
 cert-dcl50-cpp,
+cert-flp30-c,
 cert-oop57-cpp,
 cert-oop58-cpp,
+cppcoreguidelines-avoid-goto,
 cppcoreguidelines-narrowing-conversions,
 cppcoreguidelines-pro-bounds-array-to-pointer-decay,
 cppcoreguidelines-pro-type-cstyle-cast,
@@ -24,8 +33,10 @@ google-default-arguments,
 google-explicit-constructor,
 google-readability-casting,
 google-readability-todo,
+hicpp-multiway-paths-covered,
 hicpp-signed-bitwise,
 misc-misplaced-const,
+misc-no-recursion,
 misc-unconventional-assign-operator,
 modernize-raw-string-literal,
 modernize-replace-disallow-copy-and-assign-macro,
@@ -41,17 +52,22 @@ modernize-use-override,
 modernize-use-transparent-functors,
 modernize-use-using,
 readability-avoid-const-params-in-decls,
+readability-braces-around-statements,
 readability-const-return-type,
 readability-convert-member-functions-to-static,
+readability-delete-null-pointer,
 readability-deleted-default,
+readability-else-after-return,
 readability-identifier-naming,
 readability-implicit-bool-conversion,
 readability-isolate-declaration,
 readability-make-member-function-const,
+readability-misleading-indentation,
 readability-misplaced-array-index,
 readability-non-const-parameter,
 readability-qualified-auto,
 readability-redundant-access-specifiers,
+readability-redundant-control-flow,
 readability-redundant-declaration,
 readability-redundant-function-ptr-dereference,
 readability-redundant-member-init,
@@ -64,6 +80,7 @@ CheckOptions:
   - { key: bugprone-signed-char-misuse.CharTypedefsToIgnore, value: "int8_t;std::int8_t"}
   - { key: bugprone-signed-char-misuse.DiagnoseSignedUnsignedCharComparisons, value: 1}
   - { key: bugprone-suspicious-enum-usage.StrictMode, value: 1}
+  - { key: bugprone-too-small-loop-variable.MagnitudeBitsUpperLimit, value: 31}
   - { key: bugprone-unhandled-self-assignment.WarnOnlyIfThisHasSuspiciousField, value: 0}
   - { key: cppcoreguidelines-narrowing-conversions.WarnOnFloatingPointNarrowingConversion, value: 1}
   - { key: cppcoreguidelines-narrowing-conversions.WarnWithinTemplateInstantiation, value: 1}
@@ -74,6 +91,7 @@ CheckOptions:
   - { key: cppcoreguidelines-special-member-functions.AllowSoleDefaultDtor, value: 0}
   - { key: cppcoreguidelines-special-member-functions.AllowMissingMoveFunctions, value: 0}
   - { key: cppcoreguidelines-special-member-functions.AllowMissingMoveFunctionsWhenCopyIsDeleted, value: 0}
+  - { key: hicpp-multiway-paths-covered.WarnOnMissingElse, value: 1}
   - { key: hicpp-signed-bitwise.IgnorePositiveIntegerLiterals, value: false}
   - { key: modernize-use-auto.MinTypeNameLength, value: 0}
   - { key: modernize-use-auto.RemoveStars, value: 0}
@@ -86,6 +104,9 @@ CheckOptions:
   - { key: modernize-use-override.AllowOverrideAndFinal, value: 1}
   - { key: modernize-use-transparent-functors.SafeMode, value: 1}
   - { key: modernize-use-using.IgnoreMacros, value: 0}
+  - { key: readability-braces-around-statements.ShortStatementLines, value: 2}
+  - { key: readability-else-after-return.WarnOnUnfixable, value: 1}
+  - { key: readability-else-after-return.WarnOnConditionVariables, value: 1}
   - { key: readability-identifier-naming.AbstractClassCase, value: CamelCase}
   - { key: readability-identifier-naming.AggressiveDependentMemberLookup, value: 1}
   - { key: readability-identifier-naming.ClassCase, value: CamelCase}
