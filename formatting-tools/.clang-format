@@ -28,8 +28,10 @@ AlwaysBreakBeforeMultilineStrings: false
 AlwaysBreakTemplateDeclarations: Yes
 BinPackArguments: false
 BinPackParameters: false
+BitFieldColonSpacing: Both
 BreakBeforeBinaryOperators: All
 BreakBeforeBraces: Allman
+BreakBeforeConceptDeclarations: true
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: BeforeComma
 BreakInheritanceList: BeforeComma
@@ -53,6 +55,8 @@ IndentCaseLabels: false
 IndentExternBlock: AfterExternBlock
 IndentGotoLabels: true
 IndentPPDirectives: AfterHash
+IndentPragmas: true
+IndentRequires: true
 IndentWidth: 4
 IndentWrappedFunctionNames: false
 KeepEmptyLinesAtTheStartOfBlocks: false
@@ -76,6 +80,7 @@ SpaceAfterCStyleCast: true
 SpaceAfterLogicalNot: false
 SpaceAfterTemplateKeyword: false
 SpaceBeforeAssignmentOperators: true
+SpaceBeforeCaseColon: false
 SpaceBeforeCpp11BracedList: false
 SpaceBeforeCtorInitializerColon: true
 SpaceBeforeInheritanceColon: true
@@ -106,9 +111,9 @@ UseTab: Never
 #  - Regex:           '.*'
 #    Priority:        1
 #    SortPriority:    0
+#StatementAttributeLikeMacros: []
 
-# Future options - not supported in clang-format 11
-# BitFieldColonSpacing: Both
+# Future options - not supported in clang-format 12
+# 
 # OperandAlignmentStyle: Align
-
 ...
