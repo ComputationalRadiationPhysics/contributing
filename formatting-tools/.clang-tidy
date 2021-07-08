@@ -78,7 +78,7 @@ readability-simplify-boolean-expr,
 readability-simplify-subscript-expr,
 readability-static-accessed-through-instance'
 CheckOptions:
-  - { key: bugprone-assert-side-effect.AssertMacros, value: [assert]}
+  - { key: bugprone-assert-side-effect.AssertMacros, value: "assert"}
   - { key: bugprone-assert-side-effect.CheckFunctionCalls, value: 0}
   - { key: bugprone-dangling-handle.HandleClasses, value: "std::basic_string_view;std::experimental::basic_string_view"}
   - { key: bugprone-misplaced-widening-cast.CheckImplicitCasts, value: 1}
@@ -91,9 +91,9 @@ CheckOptions:
   - { key: bugprone-suspicious-enum-usage.StrictMode, value: 1}
   - { key: bugprone-suspicious-include.HeaderFileExtensions, value: ";h;hh;hpp;hxx;cuh"}
   - { key: bugprone-suspicious-include.ImplementationFileExtensions, value: "c;cc;cpp;cxx;cu"}
-  - { key: bugprone-suspicious-missing-comma.SizeThreshold, value: "5U"}
+  - { key: bugprone-suspicious-missing-comma.SizeThreshold, value: 5}
   - { key: bugprone-suspicious-missing-comma.RatioThreshold, value: ".2"}
-  - { key: bugprone-suspicious-missing-comma.MaxConcatenatedTokens, value: "5U"}
+  - { key: bugprone-suspicious-missing-comma.MaxConcatenatedTokens, value: 5}
   - { key: bugprone-unhandled-self-assignment.WarnOnlyIfThisHasSuspiciousField, value: 0}
   - { key: bugprone-unused-return-value.CheckedFunctions, value: "::std::async;::std::launder;::std::remove;::std::remove_if;::std::unique;::std::unique_ptr::release;::std::basic_string::empty;::std::vector::empty"}
   - { key: cppcoreguidelines-init-variables.IncludeStyle, value: "llvm"}
