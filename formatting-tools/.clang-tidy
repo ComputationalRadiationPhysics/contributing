@@ -1,20 +1,32 @@
-Checks: 'bugprone-assert-side-effect,
+Checks: 'boost-use-to-string,
+bugprone-assert-side-effect,
 bugprone-bool-pointer-implicit-conversion,
 bugprone-branch-clone,
 bugprone-copy-constructor-init,
 bugprone-dangling-handle,
 bugprone-forwarding-reference-overload,
+bugprone-inaccurate-erase,
 bugprone-infinite-loop,
 bugprone-lambda-function-name,
+bugprone-misplaced-operator-in-strlen-in-alloc,
+bugprone-misplaced-pointer-arithmetic-in-alloc,
 bugprone-misplaced-widening-cast,
+bugprone-move-forwarding-reference,
+bugprone-not-null-terminated-result,
 bugprone-parent-virtual-call,
 bugprone-redundant-branch-condition,
+bugprone-reserved-identifier,
 bugprone-signed-char-misuse,
+bugprone-sizeof-container,
 bugprone-sizeof-expression,
+bugprone-string-constructor,
+bugprone-string-integer-assignment,
 bugprone-suspicious-enum-usage,
 bugprone-suspicious-include,
+bugprone-suspicious-memset-usage,
 bugprone-suspicious-missing-comma,
 bugprone-suspicious-semicolon,
+bugprone-suspicious-string-compare,
 bugprone-swapped-arguments,
 bugprone-terminating-continue,
 bugprone-too-small-loop-variable,
@@ -26,6 +38,9 @@ bugprone-unused-return-value,
 bugprone-use-after-move,
 bugprone-virtual-near-miss,
 cert-dcl50-cpp,
+cert-dcl58-cpp,
+cert-err34-c,
+cert-err52-cpp,
 cert-mem57-cpp,
 cert-oop57-cpp,
 cert-oop58-cpp,
@@ -33,6 +48,7 @@ cppcoreguidelines-avoid-goto,
 cppcoreguidelines-init-variables,
 cppcoreguidelines-interfaces-global-init,
 cppcoreguidelines-narrowing-conversions,
+cppcoreguidelines-no-malloc,
 cppcoreguidelines-pro-bounds-array-to-pointer-decay,
 cppcoreguidelines-pro-type-cstyle-cast,
 cppcoreguidelines-pro-type-member-init,
@@ -40,6 +56,7 @@ cppcoreguidelines-pro-type-static-cast-downcast,
 cppcoreguidelines-pro-type-vararg,
 cppcoreguidelines-slicing,
 cppcoreguidelines-special-member-functions,
+google-build-explicit-make-pair,
 google-default-arguments,
 google-explicit-constructor,
 google-readability-casting,
@@ -54,13 +71,24 @@ misc-non-copyable-objects,
 misc-redundant-expression,
 misc-static-assert,
 misc-unconventional-assign-operator,
+misc-uniqueptr-reset-release,
+modernize-avoid-bind,
+modernize-avoid-c-arrays,
+modernize-deprecated-headers,
+modernize-deprecated-ios-base-aliases,
+modernize-make-shared,
+modernize-make-unique,
 modernize-raw-string-literal,
+modernize-replace-auto-ptr,
 modernize-replace-disallow-copy-and-assign-macro,
+modernize-replace-random-shuffle,
+modernize-replace-shrink-to-fit,
 modernize-return-braced-init-list,
 modernize-unary-static-assert,
 modernize-use-auto,
 modernize-use-bool-literals,
 modernize-use-default-member-init,
+modernize-use-emplace,
 modernize-use-equals-default,
 modernize-use-equals-delete,
 modernize-use-nullptr,
@@ -69,6 +97,7 @@ modernize-use-transparent-functors,
 modernize-use-using,
 readability-avoid-const-params-in-decls,
 readability-const-return-type,
+readability-container-size-empty,
 readability-convert-member-functions-to-static,
 readability-delete-null-pointer,
 readability-deleted-default,
@@ -87,26 +116,41 @@ readability-redundant-declaration,
 readability-redundant-function-ptr-dereference,
 readability-redundant-member-init,
 readability-redundant-preprocessor,
+readability-redundant-smartptr-get,
+readability-redundant-string-cstr,
+readability-redundant-string-init,
 readability-simplify-boolean-expr,
 readability-simplify-subscript-expr,
-readability-static-accessed-through-instance'
+readability-static-accessed-through-instance,
+readability-string-compare,
+readability-uniqueptr-delete-release,
+readability-use-anyofallof'
 CheckOptions:
   - { key: bugprone-assert-side-effect.AssertMacros, value: "assert"}
   - { key: bugprone-assert-side-effect.CheckFunctionCalls, value: 0}
   - { key: bugprone-dangling-handle.HandleClasses, value: "std::basic_string_view;std::experimental::basic_string_view"}
   - { key: bugprone-misplaced-widening-cast.CheckImplicitCasts, value: 1}
+  - { key: bugprone-not-null-terminated-result.WantToUseSafeFunctions, value: 1}
+  - { key: bugprone-reserved-identifier.Invert, value: 0}
+  - { key: bugprone-reserved-identifier.AllowedIdentifiers, value: ""}
   - { key: bugprone-signed-char-misuse.CharTypedefsToIgnore, value: "int8_t;std::int8_t"}
   - { key: bugprone-signed-char-misuse.DiagnoseSignedUnsignedCharComparisons, value: 1}
   - { key: bugprone-sizeof-expression.WarnOnSizeOfConstant, value: 1}
   - { key: bugprone-sizeof-expression.WarnOnSizeOfIntegerExpression, value: 1}
   - { key: bugprone-sizeof-expression.WarnOnSizeOfThis, value: 1}
   - { key: bugprone-sizeof-expression.WarnOnSizeOfCompareToConstant, value: 1}
+  - { key: bugprone-string-constructor.WarnOnLargeLength, value: 1}
+  - { key: bugprone-string-constructor.LargeLengthThreshold, value: "0x800000"}
+  - { key: bugprone-string-constructor.StringNames, value: "::std::basic_string;::std::basic_string_view"}
   - { key: bugprone-suspicious-enum-usage.StrictMode, value: 1}
   - { key: bugprone-suspicious-include.HeaderFileExtensions, value: ";h;hh;hpp;hxx;cuh"}
   - { key: bugprone-suspicious-include.ImplementationFileExtensions, value: "c;cc;cpp;cxx;cu"}
   - { key: bugprone-suspicious-missing-comma.SizeThreshold, value: 5}
   - { key: bugprone-suspicious-missing-comma.RatioThreshold, value: ".2"}
   - { key: bugprone-suspicious-missing-comma.MaxConcatenatedTokens, value: 5}
+  - { key: bugprone-suspicious-string-compare.WarnOnImplicitComparison, value: 1}
+  - { key: bugprone-suspicious-string-compare.WarnOnLogicalNotComparison, value: 0}
+  - { key: bugprone-suspicious-string-compare.StringCompareLikeFunctions, value: ""}
   - { key: bugprone-too-small-loop-variable.MagnitudeBitsUpperLimit, value: 31}
   - { key: bugprone-unhandled-self-assignment.WarnOnlyIfThisHasSuspiciousField, value: 0}
   - { key: bugprone-unused-return-value.CheckedFunctions, value: "::std::async;::std::launder;::std::remove;::std::remove_if;::std::unique;::std::unique_ptr::release;::std::basic_string::empty;::std::vector::empty"}
@@ -116,6 +160,9 @@ CheckOptions:
   - { key: cppcoreguidelines-narrowing-conversions.WarnWithinTemplateInstantiation, value: 1}
   - { key: cppcoreguidelines-narrowing-conversions.WarnOnEquivalentBitWidth, value: 1}
   - { key: cppcoreguidelines-narrowing-conversions.PedanticMode, value: 1}
+  - { key: cppcoreguidelines-no-malloc.Allocations, value: "::malloc;::calloc"}
+  - { key: cppcoreguidelines-no-malloc.Deallocations, value: "::free"}
+  - { key: cppcoreguidelines-no-malloc.Reallocations, value: "::realloc"}
   - { key: cppcoreguidelines-pro-type-member-init.IgnoreArrays, value: 0}
   - { key: cppcoreguidelines-pro-type-member-init.UseAssignment, value: 0}
   - { key: cppcoreguidelines-special-member-functions.AllowSoleDefaultDtor, value: 0}
@@ -125,11 +172,29 @@ CheckOptions:
   - { key: hicpp-signed-bitwise.IgnorePositiveIntegerLiterals, value: false}
   - { key: misc-definitions-in-headers.HeaderFileExtensions, value: "h,hh,hpp,hxx"}
   - { key: misc-definitions-in-header.UseHeaderFileExtension, value: 1}
+  - { key: misc-unique-ptr-reset-release.IncludeStyle, value: "llvm"}
+  - { key: modernize-avoid-bind.PermissiveParameterList, value: 1}
+  - { key: modernize-make-shared.MakeSmartPtrFunction, value: "std::make_shared"}
+  - { key: modernize-make-shared.MakeSmartPtrFunctionHeader, value: "memory"}
+  - { key: modernize-make-shared.IncludeStyle, value: "llvm"}
+  - { key: modernize-make-shared.IgnoreMacros, value: 0}
+  - { key: modernize-make-shared.IgnoreDefaultInitialization, value: 1}
+  - { key: modernize-make-unique.MakeSmartPtrFunction, value: "std::make_unique"}
+  - { key: modernize-make-unique.MakeSmartPtrFunctionHeader, value: "memory"}
+  - { key: modernize-make-unique.IncludeStyle, value: "llvm"}
+  - { key: modernize-make-unique.IgnoreMacros, value: 0}
+  - { key: modernize-make-unique.IgnoreDefaultInitialization, value: 1}
+  - { key: modernize-replace-auto-ptr.IncludeStyle, value: "llvm"}
   - { key: modernize-use-auto.MinTypeNameLength, value: 0}
   - { key: modernize-use-auto.RemoveStars, value: 0}
   - { key: modernize-use-bool-literals.IgnoreMacros, value: 0}
   - { key: modernize-use-default-member-init.UseAssignment, value: 0}
   - { key: modernize-use-default-member-init.IgnoreMacros, value: 0}
+  - { key: modernize-use-emplace.ContainersWithPushBack, value: "::std::deque;::std::list;::std::vector"}
+  - { key: modernize-use-emplace.IgnoreImplicitConstructors, value: 0}
+  - { key: modernize-use-emplace.SmartPointers, value: "::std::auto_ptr;::std::shared_ptr;::std::unique_ptr"}
+  - { key: modernize-use-emplace.TupleTypes, value: "::std::pair;::std::tuple"}
+  - { key: modernize-use-emplace.TupleMakeFunctions, value: "::std::make_pair;::std::make_tuple"}
   - { key: modernize-use-equals-default.IgnoreMacros, value: 0}
   - { key: modernize-use-equals-delete.IgnoreMacros, value: 0}
   - { key: modernize-use-override.IgnoreDestructors, value: 0}
@@ -206,6 +271,8 @@ CheckOptions:
   - { key: readability-redundant-access-specifiers.CheckFirstDeclaration, value: 1}
   - { key: readability-redundant-declaration.IgnoreMacros, value: 0}
   - { key: readability-redundant-member-init.IgnoreBaseInCopyConstructors, value: 1}
+  - { key: readability-redundant-smartptr-get.IgnoreMacros, value: 0}
+  - { key: readability-redundant-string-init.StringNames, value: "::std::basic_string;::std::basic_string_view"}
   - { key: readability-simplify-boolean-expr.ChainedConditionalAssignment, value: 1}
   - { key: readability-simplify-boolean-expr.ChainedConditionalReturn, value: 1}
-  
+  - { key: readability-uniqueptr-delete-release.PreferResetCall, value: 0}
