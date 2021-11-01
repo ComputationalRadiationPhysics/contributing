@@ -55,7 +55,6 @@ IndentCaseLabels: false
 IndentExternBlock: AfterExternBlock
 IndentGotoLabels: true
 IndentPPDirectives: AfterHash
-IndentPragmas: true
 IndentRequires: true
 IndentWidth: 4
 IndentWrappedFunctionNames: false
