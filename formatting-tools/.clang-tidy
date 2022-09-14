@@ -1,4 +1,5 @@
-Checks: 'boost-use-to-string,
+Checks: 'altera-struct-pack-align,
+boost-use-to-string,
 bugprone-assert-side-effect,
 bugprone-bool-pointer-implicit-conversion,
 bugprone-branch-clone,
@@ -95,6 +96,19 @@ modernize-use-nullptr,
 modernize-use-override,
 modernize-use-transparent-functors,
 modernize-use-using,
+performance-faster-string-find,
+performance-for-range-copy,
+performance-implicit-conversion-in-loop,
+performance-inefficient-algorithm,
+performance-inefficient-vector-operation,
+performance-move-const-arg,
+performance-move-constructor-init,
+performance-no-automatic-move,
+performance-noexcept-move-constructor,
+performance-trivially-destructible,
+performance-type-promotion-in-math-fn,
+performance-unnecessary-copy-initialization,
+performance-unnecessary-value-param,
 readability-avoid-const-params-in-decls,
 readability-const-return-type,
 readability-container-size-empty,
@@ -201,6 +215,15 @@ CheckOptions:
   - { key: modernize-use-override.AllowOverrideAndFinal, value: 1}
   - { key: modernize-use-transparent-functors.SafeMode, value: 1}
   - { key: modernize-use-using.IgnoreMacros, value: 0}
+  - { key: performance-faster-string-find.StringLikeClasses, value: "::std::basic_string;::std::basic_string_view"}
+  - { key: performance-for-range-copy.WarnOnAllAutoCopies, value: 1}
+  - { key: performance-for-range-copy.AllowedTypes, value: ""}
+  - { key: performance-inefficient-vector-operation.VectorLikeClasses, value: "::std::vector"}
+  - { key: performance-move-const-arg.CheckTriviallyCopyableMove, value: 1}
+  - { key: performance-move-constructor-init.IncludeStyle, value: "llvm"}
+  - { key: performance-unnecessary-copy-initialization.AllowedTypes, value: ""}
+  - { key: performance-unnecessary-value-param.IncludeStyle, value: "llvm"}
+  - { key: performance-unnecessary-value-param.AllowedTypes, value: ""}
   - { key: readability-else-after-return.WarnOnUnfixable, value: 1}
   - { key: readability-else-after-return.WarnOnConditionVariables, value: 1}
   - { key: readability-identifier-naming.AbstractClassCase, value: CamelCase}
