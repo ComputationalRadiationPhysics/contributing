@@ -7,6 +7,7 @@ bugprone-branch-clone,
 bugprone-copy-constructor-init,
 bugprone-dangling-handle,
 bugprone-dynamic-static-initializers,
+bugprone-exception-escape,
 bugprone-fold-init-type,
 bugprone-forwarding-reference-overload,
 bugprone-inaccurate-erase,
@@ -37,6 +38,7 @@ bugprone-suspicious-semicolon,
 bugprone-suspicious-string-compare,
 bugprone-swapped-arguments,
 bugprone-terminating-continue,
+bugprone-throw-keyword-missing,
 bugprone-too-small-loop-variable,
 bugprone-undefined-memory-manipulation,
 bugprone-undelegated-constructor,
@@ -49,6 +51,8 @@ cert-dcl50-cpp,
 cert-dcl58-cpp,
 cert-err34-c,
 cert-err52-cpp,
+cert-err58-cpp,
+cert-err60-cpp,
 cert-mem57-cpp,
 cert-msc50-cpp,
 cert-oop57-cpp,
@@ -71,6 +75,7 @@ google-explicit-constructor,
 google-readability-casting,
 google-readability-todo,
 google-runtime-operator,
+hicpp-exception-baseclass,
 hicpp-multiway-paths-covered,
 hicpp-signed-bitwise,
 misc-definitions-in-headers,
@@ -79,6 +84,7 @@ misc-new-delete-overloads,
 misc-non-copyable-objects,
 misc-redundant-expression,
 misc-static-assert,
+misc-throw-by-value-catch-by-reference,
 misc-unconventional-assign-operator,
 misc-uniqueptr-reset-release,
 modernize-avoid-bind,
@@ -100,9 +106,11 @@ modernize-use-default-member-init,
 modernize-use-emplace,
 modernize-use-equals-default,
 modernize-use-equals-delete,
+modernize-use-noexcept,
 modernize-use-nullptr,
 modernize-use-override,
 modernize-use-transparent-functors,
+modernize-use-uncaught-exceptions,
 modernize-use-using,
 mpi-buffer-deref,
 mpi-type-mismatch,
@@ -154,6 +162,8 @@ CheckOptions:
   - { key: bugprone-assert-side-effect.AssertMacros, value: "assert"}
   - { key: bugprone-assert-side-effect.CheckFunctionCalls, value: 0}
   - { key: bugprone-dangling-handle.HandleClasses, value: "std::basic_string_view;std::experimental::basic_string_view"}
+  - { key: bugprone-exception-escape.FunctionsThatShouldNotThrow, value: ""}
+  - { key: bugprone-exception-escape.IgnoredExceptions, value: ""}
   - { key: bugprone-misplaced-widening-cast.CheckImplicitCasts, value: 1}
   - { key: bugprone-not-null-terminated-result.WantToUseSafeFunctions, value: 1}
   - { key: bugprone-reserved-identifier.Invert, value: 0}
@@ -197,6 +207,9 @@ CheckOptions:
   - { key: hicpp-signed-bitwise.IgnorePositiveIntegerLiterals, value: false}
   - { key: misc-definitions-in-headers.HeaderFileExtensions, value: "h,hh,hpp,hxx"}
   - { key: misc-definitions-in-header.UseHeaderFileExtension, value: 1}
+  - { key: misc-throw-by-value-catch-by-reference.CheckThrowTemporaries: 1}
+  - { key: misc-throw-by-value-catch-by-reference.WarnOnLargeObject: 1}
+  - { key: misc-throw-by-value-catch-by-reference.MaxSize: 8}
   - { key: misc-unique-ptr-reset-release.IncludeStyle, value: "llvm"}
   - { key: modernize-avoid-bind.PermissiveParameterList, value: 1}
   - { key: modernize-make-shared.MakeSmartPtrFunction, value: "std::make_shared"}
@@ -222,6 +235,7 @@ CheckOptions:
   - { key: modernize-use-emplace.TupleMakeFunctions, value: "::std::make_pair;::std::make_tuple"}
   - { key: modernize-use-equals-default.IgnoreMacros, value: 0}
   - { key: modernize-use-equals-delete.IgnoreMacros, value: 0}
+  - { key: modernize-use-noexcept.UseNoExceptFalse, value: 1}
   - { key: modernize-use-override.IgnoreDestructors, value: 0}
   - { key: modernize-use-override.AllowOverrideAndFinal, value: 1}
   - { key: modernize-use-transparent-functors.SafeMode, value: 1}
