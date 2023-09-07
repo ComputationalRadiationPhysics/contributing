@@ -90,7 +90,7 @@ PenaltyReturnTypeOnItsOwnLine: 1000
 PointerAlignment: Left
 PPIndentWidth: -1 # follow IndentWidth
 QualifierAlignment: Custom
-QualifierOrder: ['friend', 'inline', 'static', 'constexpr', 'type', 'const', 'volatile', 'restrict']
+QualifierOrder: ['friend', 'static', 'inline', 'constexpr', 'type', 'const', 'volatile', 'restrict']
 ReferenceAlignment: Pointer # follow PointerAlignment
 ReflowComments: true
 RemoveBracesLLVM: false
